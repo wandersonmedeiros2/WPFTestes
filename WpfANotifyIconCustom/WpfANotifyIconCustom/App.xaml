@@ -4,6 +4,20 @@
              xmlns:local="clr-namespace:WpfANotifyIconCustom"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="ContexMenuStyle" x:Name="ContexMenuStyle" TargetType="ContextMenu">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Border 
+                                BorderThickness="1"
+                                Background="Aqua"
+                                CornerRadius="10"
+                                >
+                            <ItemsControl/>
+                        </Border>                        
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
