@@ -13,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfClockControlApp.NativeApi;
+using WpfSetSystemTimeApp.NativeApi;
 
-namespace WpfClockControlApp
+namespace WpfSetSystemTimeApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

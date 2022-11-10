@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfClockControlApp.Properties
+namespace WpfSetSystemTimeApp.Properties
 {
 
 
