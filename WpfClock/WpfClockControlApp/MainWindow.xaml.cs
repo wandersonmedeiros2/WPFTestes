@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfAlarm.NativeApi;
+using WpfClockControlApp.NativeApi;
 
-namespace WpfAlarm
+namespace WpfClockControlApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,21 +27,19 @@ namespace WpfAlarm
             InitializeComponent();
         }
 
-        private void tbNewTime_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var strtime = tbNewTime.Text;
+            try
+            {
+                IFormatProvider formato = new CultureInfo("pt-BR");
+                TimeSpan time = TimeSpan.Parse(tbHora.Text, formato);
 
-            DateTime newTime = new DateTime(2022, 11, 8, 10, 50, 32); //DateTime.Parse(strtime);
-            
-
-            Kernel32Wrapper.SetSystemTime(newTime);
-
-
+                Kernel32Wrapper.SetSystemTime(time);
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
 
         }
     }

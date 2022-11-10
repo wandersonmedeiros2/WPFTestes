@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfAlarm.NativeApi
+namespace WpfClockControlApp.NativeApi
 {
     public struct SystemTime
     {
@@ -19,7 +19,7 @@ namespace WpfAlarm.NativeApi
         public ushort Millisecond;
     };
 
-    public  class Kernel32Wrapper
+    public class Kernel32Wrapper
     {
         [DllImport("kernel32.dll", EntryPoint = "SetSystemTime", SetLastError = true)]
         private extern static bool Kernel32SetSystemTime(ref SystemTime st);
@@ -51,12 +51,19 @@ namespace WpfAlarm.NativeApi
 
         public static void SetSystemTime(DateTime dateTime)
         {
-            
-            DateTime datetimeUTC = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second, DateTimeKind.Local);
+
+            DateTime datetimeUTC = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second,dateTime.Millisecond, DateTimeKind.Local);
             SystemTime systemTime = DateTimeToSystemTime(datetimeUTC);
 
 
             Kernel32SetLocalTime(ref systemTime);
+        }
+
+        public static void SetSystemTime(TimeSpan time)
+        {
+            DateTime currentDatetime = DateTime.Now;
+            DateTime datetimeUTC = new DateTime(currentDatetime.Year, currentDatetime.Month, currentDatetime.Day, time.Hours, time.Minutes, time.Seconds, time.Milliseconds, DateTimeKind.Local);
+            SetSystemTime(datetimeUTC);
         }
 
     }

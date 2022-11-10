@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfAlarm.Properties
+namespace WpfClockControlApp.Properties
 {
 
 
